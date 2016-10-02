@@ -1,16 +1,40 @@
 " use strict ";
 
-function Pet() {
-    .name = "";
-    .setName = function(name) {
-        .name = name;
+var Pet = function() {
+    this.name = "";
+    this.setName = function(name) {
+        this.name = name;
     }
-    .getName = function() {
-        return .name;
+    this.getName = function() {
+        return this.name;
     }
-    .speak = function() {
+    this.speak = function() {
         display.innerHTML += "How?";
     }
+}
+
+var Dog = function() {
+    Pet.call(this);
+    this.name = "";
+}
+
+Dog.prototype = Object.create(Pet.prototype);
+Dog.prototype.constructor = Dog;
+
+Dog.prototype.speak = function() {
+    display.innerHTML += "bark" + "<br /";
+}
+
+var Cat = function() {
+    Pet.call(this);
+    this.name = "";
+}
+
+Cat.prototype = Object.create(Pet.prototype);
+Cat.prototype.constructor = Cat;
+
+Cat.prototype.speak = function() {
+    display.innerHTML += "meow" + "<br /";
 }
 
 function PetChat(){
