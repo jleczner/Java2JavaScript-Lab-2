@@ -1,5 +1,18 @@
 " use strict ";
 
+function Pet() {
+    .name = "";
+    .setName = function(name) {
+        .name = name;
+    }
+    .getName = function() {
+        return .name;
+    }
+    .speak = function() {
+        display.innerHTML += "How?";
+    }
+}
+
 function PetChat(){
   var display = document.getElementById("display");
   var numPets = null;
