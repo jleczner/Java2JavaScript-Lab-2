@@ -1,23 +1,24 @@
 " use strict ";
 var display = document.getElementById("display");
-var Pet = function () {
+function Pet () {
     this.name = "";
-    this.setName = function(name) {
-        this.name = name;
-    };
-    this.getName = function() {
-        return this.name;
-    };
-    this.speak = function() {
-        display.innerHTML += "How?";
-    };
+};
+
+Pet.prototype.setName = function (name) {
+    this.name = name;
+};
+Pet.prototype.getName = function () {
+    return this.name;
+};
+Pet.prototype.speak = function () {
+    display.innerHTML += "How?";
 };
 function Dog() {
     Pet.call(this);
 }
 Dog.prototype = Object.create(Pet.prototype);
 Dog.prototype.constructor = Dog;
-Dog.speak = function() {
+Dog.prototype.speak = function () {
     display.innerHTML += "bark" + "<br />";
 };
 var Cat = function () {
@@ -25,7 +26,7 @@ var Cat = function () {
 };
 Cat.prototype = Object.create(Pet.prototype);
 Cat.prototype.constructor = Cat;
-Cat.prototype.speak = function() {
+Cat.prototype.speak = function () {
     display.innerHTML += "meow" + "<br />";
 };
 var Frog = function () {
@@ -90,14 +91,12 @@ function PetChat() {
     this.print = function () {
         for (var i = 0; i < numPets; i++) {
             var p = petList[i];
-            display.innerHTML += p.speak() + " " + p.speak();
+            display.innerHTML += p.getName() + " " + p.speak();
         }
     };
 }
 ;
 var chat = new PetChat();
 var dog = new Dog();
-dog.setName("f");
-console.log(dog.speak());
 chat.init();
 chat.print();

@@ -1,9 +1,9 @@
 " use strict ";
 var display = document.getElementById("display");
-function Pet () {
+function Pet() {
     this.name = "";
-};
-
+}
+;
 Pet.prototype.setName = function (name) {
     this.name = name;
 };
@@ -11,7 +11,7 @@ Pet.prototype.getName = function () {
     return this.name;
 };
 Pet.prototype.speak = function () {
-    display.innerHTML += "How?";
+    return "How?";
 };
 function Dog() {
     Pet.call(this);
@@ -19,7 +19,7 @@ function Dog() {
 Dog.prototype = Object.create(Pet.prototype);
 Dog.prototype.constructor = Dog;
 Dog.prototype.speak = function () {
-    display.innerHTML += "bark" + "<br />";
+    return "bark" + "<br />";
 };
 var Cat = function () {
     Pet.call(this);
@@ -27,7 +27,7 @@ var Cat = function () {
 Cat.prototype = Object.create(Pet.prototype);
 Cat.prototype.constructor = Cat;
 Cat.prototype.speak = function () {
-    display.innerHTML += "meow" + "<br />";
+    return "meow" + "<br />";
 };
 var Frog = function () {
     Pet.call(this);
@@ -35,7 +35,7 @@ var Frog = function () {
 Frog.prototype = Object.create(Pet.prototype);
 Frog.prototype.constructor = Frog;
 Frog.prototype.speak = function () {
-    display.innerHTML += "ribbit" + "<br />";
+    return "ribbit" + "<br />";
 };
 function PetChat() {
     var numPets = null;
