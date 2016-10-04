@@ -76,7 +76,27 @@ function PetChat(){
 
   var makePets = function() {
   	for (var i = 0; i < numPets; i++) {
-  		// TODO
+  		switch (petTypes[i]) {
+  			case "cat":
+  				petList.add(new Cat());
+  				break;
+  			case "dog":
+  				petList.add(new Dog());
+  				break;
+  			case "frog":
+  				petList.add(new Frog());
+  				break;
+  			default:
+  				console.log("bad input: " + petTypes[i]);
+  				break;
+  		}
+  	}
+  }
+
+  var namePets = function() {
+  	for (var i = 0; i < numPets; i++) {
+  		var p = petList[i];
+  		p.setName(petNames[i]);
   	}
   }
 
@@ -90,6 +110,7 @@ function PetChat(){
 
 	askPetInfo();
 	makePets();
+	namePets();
   };
 
   this.print = function() {
@@ -102,3 +123,4 @@ function PetChat(){
 
 var chat = new PetChat();
 chat.init();
+chat.print();
