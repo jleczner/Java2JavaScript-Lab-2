@@ -1,50 +1,43 @@
 " use strict ";
-var Pet = function () {
-    var display = document.getElementById("display");
+var display = document.getElementById("display");
+function Pet () {
     this.name = "";
-    this.setName = function (name) {
-        this.name = name;
-    };
-    this.getName = function () {
-        return this.name;
-    };
-    this.speak = function () {
-        display.innerHTML += "How?";
-    };
-    this.print = function () {
-        display.innerHTML += this.name + "<br />" +
-            this.speak + "<br />";
-    };
 };
-var Dog = function () {
+
+Pet.prototype.setName = function (name) {
+    this.name = name;
+};
+Pet.prototype.getName = function () {
+    return this.name;
+};
+Pet.prototype.speak = function () {
+    display.innerHTML += "How?";
+};
+function Dog() {
     Pet.call(this);
-    this.name = "";
-};
+}
 Dog.prototype = Object.create(Pet.prototype);
 Dog.prototype.constructor = Dog;
 Dog.prototype.speak = function () {
-    this.display.innerHTML += "bark" + "<br /";
+    display.innerHTML += "bark" + "<br />";
 };
 var Cat = function () {
     Pet.call(this);
-    this.name = "";
 };
 Cat.prototype = Object.create(Pet.prototype);
 Cat.prototype.constructor = Cat;
 Cat.prototype.speak = function () {
-    this.display.innerHTML += "meow" + "<br /";
+    display.innerHTML += "meow" + "<br />";
 };
 var Frog = function () {
     Pet.call(this);
-    this.name = "";
 };
 Frog.prototype = Object.create(Pet.prototype);
 Frog.prototype.constructor = Frog;
 Frog.prototype.speak = function () {
-    this.display.innerHTML += "ribbit" + "<br /";
+    display.innerHTML += "ribbit" + "<br />";
 };
 function PetChat() {
-    var display = document.getElementById("display");
     var numPets = null;
     var petList;
     var petTypes;
@@ -64,13 +57,13 @@ function PetChat() {
         for (var i = 0; i < numPets; i++) {
             switch (petTypes[i]) {
                 case "cat":
-                    petList.add(new Cat());
+                    petList.push(new Cat());
                     break;
                 case "dog":
-                    petList.add(new Dog());
+                    petList.push(new Dog());
                     break;
                 case "frog":
-                    petList.add(new Frog());
+                    petList.push(new Frog());
                     break;
                 default:
                     console.log("bad input: " + petTypes[i]);
@@ -98,11 +91,12 @@ function PetChat() {
     this.print = function () {
         for (var i = 0; i < numPets; i++) {
             var p = petList[i];
-            p.print();
+            display.innerHTML += p.getName() + " " + p.speak();
         }
     };
 }
 ;
 var chat = new PetChat();
+var dog = new Dog();
 chat.init();
 chat.print();
